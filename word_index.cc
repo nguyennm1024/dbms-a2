@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <sstream>
 #include <fstream>
+#include <time.h>
 // #include "common.h"
 
 using namespace std;
@@ -28,7 +29,7 @@ void word_tokenize(const std::string &s, std::vector<std::string> *tokens, std::
  
 int main(int argc, char **argv) {
     if(argc < 3) {
-        cerr << "Usage: <dataset_metadata> <idxname>" << endl;
+        cerr << "Usage: <dataset_metadata> <idxname> <data_size>" << endl;
         exit(0);
     }
     int max_length = 50;
@@ -40,13 +41,25 @@ int main(int argc, char **argv) {
     std::ifstream data_file(argv[1]);  // Open the file for reading
     std::vector<std::string> words;     // Create a vector to hold the lines of the file
 
+    // measure time
+    clock_t start, end;
+    start = clock();
+
+    int data_size = stoi(argv[3]);
+    int data_count = 0;
+
     std::string line;
     while (std::getline(data_file, line)) {  // Read each line of the file
+        if(data_count > data_size) {
+            break;
+        }
         words.push_back(line);          // Add the line to the vector
+        data_count++;
     }
 
     std::ifstream stopword_file("stopwords.txt");  // Open the file for reading
     std::vector<std::string> stop_words;     // Create a vector to hold the lines of the file
+
 
     std::string word;
     while (std::getline(stopword_file, word)) {  // Read each line of the file
@@ -57,7 +70,7 @@ int main(int argc, char **argv) {
     for(vector<string>::iterator it = words.begin(); 
                                  it != words.end(); 
                                  it++, lineno++) {
-        cout << "line " << lineno << endl;
+        // cout << "line " << lineno << endl;
         string &s = *it;
  
         // perform tokenization
@@ -88,4 +101,7 @@ int main(int argc, char **argv) {
             db.commit();
         }
     }
+    end = clock();
+    double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
+    cout << "Time taken by program is : " << fixed << time_taken << setprecision(5);
 }
