@@ -49,14 +49,27 @@ int main(int argc, char **argv) {
     int data_count = 0;
 
     std::string line;
+    bool next_article = true;
+    string s = "";
     while (std::getline(data_file, line)) {  // Read each line of the file
-        if(data_count > data_size) {
+        if(data_count >= data_size) {
             break;
         }
-        words.push_back(line);          // Add the line to the vector
-        data_count++;
+        if (next_article == true) {
+            s = "";
+            s += line;
+            next_article = false;
+        }
+        else {
+            s += " \n ";
+            s += line;
+            next_article = true;
+            words.push_back(s);  
+            data_count++;
+        }
     }
-
+    //print size of words
+    cout << words.size() << endl;
     std::ifstream stopword_file("stopwords.txt");  // Open the file for reading
     std::vector<std::string> stop_words;     // Create a vector to hold the lines of the file
 

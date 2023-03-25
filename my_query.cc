@@ -12,11 +12,13 @@ int main(int argc, char const *argv[])
     Xapian::Database db(argv[1]);
     std::vector<string> and_terms;
     std::vector<string> or_terms;
-    for(int i = 2; i < argc; i++)
+    for(int i = 3; i < argc; i++)
         if (argv[i][0] == '+')
-            and_terms.push_back(string(argv[i] + 1));
-        else
+            and_terms.push_back(string(argv[i]+1));
+        else {
+            cout << string(argv[i]) << endl;
             or_terms.push_back(string(argv[i]));
+        }
         // terms.push_back(string(argv[i]));
 
     // terms.push_back(string(argv[1]));
@@ -28,6 +30,7 @@ int main(int argc, char const *argv[])
     Xapian::Enquire enquire(db);
     enquire.set_query(or_query);
     Xapian::MSet matches = enquire.get_mset(0, stoi(argv[2]));
+    cout << "Or query" << endl;
     std::cout << matches.size() << std::endl;
     for(Xapian::MSetIterator match = matches.begin(); 
     match != matches.end();
@@ -41,6 +44,8 @@ int main(int argc, char const *argv[])
     }
 
     cout << "====================" << endl;
+    cout << "And query" << endl;
+
 
     Xapian::Query and_query(
         Xapian::Query::OP_AND,
@@ -48,7 +53,7 @@ int main(int argc, char const *argv[])
         and_terms.end()
     );
 
-    enquire.set_query(or_query);
+    enquire.set_query(and_query);
     matches = enquire.get_mset(0, stoi(argv[2]));
     std::cout << matches.size() << std::endl;
     for(Xapian::MSetIterator match = matches.begin(); 
