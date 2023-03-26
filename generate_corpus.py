@@ -154,7 +154,7 @@ for k in cardinality_k:
 print(search_test_k)
 
 
-plt.plot(cardinality_k, )
+plt.plot(cardinality_k, search_test_k)
 plt.ylabel("search time(s)")
 plt.xlabel("cardinality_k")
 plt.xlim(0, 40)
