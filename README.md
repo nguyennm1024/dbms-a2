@@ -35,9 +35,11 @@ The executable files are `metadata_indexer` and `metadata_search`.
     ![4](./4.jpg)
     
 ### Plot the top-K search time (y-axis) versus the cardinality of the query set. Consider K = 10.
-
+    *Plot:
+    
     ![5](./5.jpg)
     
 ### [Optional] Plot the top-K search time (y-axis) versus K for a query set. Consider the following K values: 2, 10, 20, 25, 40.
-
+    *Plot:
+    
     ![6](./6.jpg)
