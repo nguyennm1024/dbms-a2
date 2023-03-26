@@ -35,11 +35,13 @@ The executable files are `metadata_indexer` and `metadata_search`.
     ![4](./4.jpg)
     
 ### Plot the top-K search time (y-axis) versus the cardinality of the query set. Consider K = 10.
-    *Plot:
-    
+* Plot:
     ![5](./5.jpg)
+
+We use nltk to generate the words.
     
 ### [Optional] Plot the top-K search time (y-axis) versus K for a query set. Consider the following K values: 2, 10, 20, 25, 40.
-    *Plot:
-    
+* Plot:
     ![6](./6.jpg)
+
+The result comes from 100 words generated.
