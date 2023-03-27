@@ -29,6 +29,8 @@ The executable files are `metadata_indexer` and `metadata_search`.
     The keywords used in this activity is 
     
     People human +document +system
+    
+    k is 5000
 ### Search time versus number of AND-keywords in the query:
   * Plot the search time (y-axis) versus the number of AND-terms in the query. Consider the following corpus sizes: 2, 5, 10, 15, 20.
   
@@ -40,7 +42,7 @@ The executable files are `metadata_indexer` and `metadata_search`.
     
     
     
-    Datasize is 40000
+    Datasize is 40000, k is 500
 ### Search time versus number of OR-keywords in the query:
   * Plot the search time (y-axis) versus the number of OR-terms in the query.
   
@@ -50,7 +52,7 @@ The executable files are `metadata_indexer` and `metadata_search`.
     
     +people +human +system +document +datasets +number +platform +required +awards +primary +life +privacy +permit +service +housing +orders +abandoned +armed +benefits +establish
     
-    Datasize is 40000
+    Datasize is 40000, k is 500
 ### Plot the top-K search time (y-axis) versus the cardinality of the query set. Consider K = 10.
 * Plot:
     ![6](./)
