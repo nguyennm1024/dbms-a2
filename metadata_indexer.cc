@@ -34,7 +34,7 @@ void word_tokenize(const std::string &s, std::vector<std::string> *tokens, std::
  
 int main(int argc, char **argv) {
     if(argc < 4) {
-        cerr << "Usage: metadata_index <dataset_metadata> <idxname> <data_size>" << endl;
+        cerr << "Usage: metadata_indexer <dataset_metadata> <idxname> <data_size>" << endl;
         exit(0);
     }
     int max_length = 50;
