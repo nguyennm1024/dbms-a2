@@ -19,6 +19,10 @@ std::string highlight(const std::string& input, const std::string& pattern, cons
 
 int main(int argc, char const *argv[])
 {
+    if(argc < 4) {
+        cerr << "Usage: metadata_search <idxname> <top-k> <keywords> ..." << endl;
+        exit(0);
+    }
     Xapian::Database db(argv[1]);
     std::vector<string> and_terms;
     std::vector<string> or_terms;

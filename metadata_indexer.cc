@@ -17,6 +17,11 @@ void word_tokenize(const std::string &s, std::vector<std::string> *tokens, std::
     std::string token;
     while(iss >> token) {
         std::vector<std::string>::iterator it = std::find(stop_words.begin(), stop_words.end(), token);
+        
+        //use only lowercase letters
+        for(int i=0; i<token.size();i++)
+        if(token[i]>='A' && token[i]<= 'Z')
+                        token[i]-='A'-'a';
 
         // Check if the element was found
         if (it != stop_words.end()) {
@@ -28,8 +33,8 @@ void word_tokenize(const std::string &s, std::vector<std::string> *tokens, std::
 
  
 int main(int argc, char **argv) {
-    if(argc < 3) {
-        cerr << "Usage: <dataset_metadata> <idxname> <data_size>" << endl;
+    if(argc < 4) {
+        cerr << "Usage: metadata_index <dataset_metadata> <idxname> <data_size>" << endl;
         exit(0);
     }
     int max_length = 50;
